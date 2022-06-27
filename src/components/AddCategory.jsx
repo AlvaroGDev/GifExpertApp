@@ -1,25 +1,28 @@
 import { useState } from "react"
+import { GifExpertApp } from "../GifExpertApp";
 
+export default function AddCategory({ onNewCategory }) {
 
-export default function AddCategory() {
-
-    const [inputValue, setInputValue] = useState('One Punch');
+    const [inputValue, setInputValue] = useState('');
 
     const onInputChange = (e) => {
 
-        setInputValue(e.target.value);
-        console.log(e.target.value);
+        setInputValue(e.target.value); //Cada vez que pulsamos una tecla, salta el onChange, haciendo saltar esta funcion que es el hook, y asi actualiza el valor del input
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputValue);
+
+        if (inputValue.trim().length <= 1) return; //Si es menor o igual que 1, salimos
+
+        onNewCategory(inputValue.trim());
+        setInputValue('');
     }
 
     return (
         <>
 
-            <form onSubmit={(event) => onSubmit(event)}>
+            <form onSubmit={onSubmit}>
                 <input
                     type="text"
                     placeholder="Buscar gifs"
