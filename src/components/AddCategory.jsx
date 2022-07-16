@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { GifExpertApp } from "../GifExpertApp";
 
-export default function AddCategory({ onNewCategory }) {
+export const AddCategory = ({ onNewCategory }) => {
 
     const [inputValue, setInputValue] = useState('');
 
